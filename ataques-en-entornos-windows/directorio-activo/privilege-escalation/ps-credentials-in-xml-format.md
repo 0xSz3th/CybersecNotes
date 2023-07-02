@@ -1,0 +1,33 @@
+# PS Credentials in XML format
+
+Es una forma de almacenar objetos de powershell en formato XML.
+
+## Format
+
+```xml
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>System.Management.Automation.PSCredential</T>
+      <T>System.Object</T>
+    </TN>
+    <ToString>System.Management.Automation.PSCredential</ToString>
+    <Props>
+      <S N="UserName">HTB\Tom</S>
+      <SS N="Password">01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692</SS>
+    </Props>
+  </Obj>
+</Objs>
+```
+
+## Get Credentials of the XML Format
+
+```powershell
+powershell -c "$cred = Import-Clixml -Path cred.xml; $cred.GetNetworkCredential() | Format-List *"
+```
+
+**Import-Clixml:** Imports a CLIXML file and creates corresponding objects in PowerShell.
+
+**Get-NetworkCredential:**  Returns an equivalent NetworkCredential object for this PSCredential.
+
+**Format-List:** Formats the output as a list of properties in which each property appears on a new line.
