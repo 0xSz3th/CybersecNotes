@@ -48,7 +48,7 @@ dsniff -t 23/tcp=telnet -n
 
 **Wireshark**
 
-<figure><img src="../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
 
 

@@ -2,7 +2,7 @@
 
 Para escanear con nmap, previamente hay que tener configurado el servidor socks5 en el archivo proxychains.conf, se ejectua el escaneo con nmap con el parámetro proxychains y el -sT para realizar un TCP connect scan, de lo contrario no funcionará el escaneo.
 
-![](<../../.gitbook/assets/image (2).png>)
+![](<../../.gitbook/assets/image (29).png>)
 
 
 

@@ -14,7 +14,7 @@ Si hablamos de Active Directory también estamos hablando de un **dominio**, ya 
 
 **Un dominio en Active Directory** es un conjunto de ordenadores conectados a una red los cuales cuentan con un equipo servidor para administrar las cuentas de usuario y credenciales de la red. Hasta aquí es todo igual, lo que ocurre es que en una red **no solamente podremos tener un dominio, sino varios de ellos**. Estos dominios no necesariamente tienen que estar en contacto unos con otros, es más si por ejemplo un dominio (A) tienen acceso a otros dos dominios (B y C), esto no implica que C tenga acceso a B.
 
-![](<../../.gitbook/assets/image (32).png>)
+![](<../../.gitbook/assets/image (101).png>)
 
 ### Árbol
 
@@ -24,7 +24,7 @@ Gracias a esta estructura identificaremos mejor unos dominios de otros, por ejem
 
 **Mediante un árbol, podremos dividir en partes un Directorio Activo** para una mejor gestión de los recursos. Un usuario que pertenezca a un dominio, también será reconocido por los dominios que pertenezcan al dominio principal.
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
 ### Bosque
 
@@ -32,7 +32,7 @@ Si subimos un escalón en la jerarquía, nos encontramos con un bosque. **En un 
 
 En un bosque existirán distintos árboles de dominio con, por supuesto, diferentes nombres. **Un bosque, siempre tiene al menos un dominio raíz dentro de él**, por lo que, **cuando instalamos nuestro primer dominio, también estamos creando la raíz de un árbol y encima la raíz de un bosque.**
 
-![](<../../.gitbook/assets/image (74).png>)
+![](<../../.gitbook/assets/image (102).png>)
 
 
 
@@ -44,7 +44,7 @@ Un objeto es el nombre genérico que utilizamos para referirnos cualquier compon
 * **Recursos**: serán los elementos a los que cada usuario podrá acceder según sus permisos. Pueden ser carpetas compartidas, impresores, etc.
 * **Servicios**: son las funcionalidades a las que cada usuario puede acceder, por ejemplo, el correo electrónico.
 
-![](<../../.gitbook/assets/image (77).png>)
+![](<../../.gitbook/assets/image (46).png>)
 
 ### Unidad Organizativa
 
@@ -52,4 +52,4 @@ Una unidad organizativa en Active Directory **es un contenedor de objetos como i
 
 **Con las unidades organizativas podremos ver de un vistazo la jerarquía de nuestro dominio** y poder asignar permisos fácilmente según los objetos contenidos.
 
-![](<../../.gitbook/assets/image (68).png>)
+![](<../../.gitbook/assets/image (7).png>)

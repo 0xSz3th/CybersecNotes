@@ -8,7 +8,7 @@ El **formato** de un **SPN** es `<Service Class>/<Host>:<Port>`, por ejemplo un 
 
 &#x20;
 
-<figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -22,7 +22,7 @@ La información que se puede encontrar en un **PAC** puede ser la siguiente:
 * Grupo al que pertenece
 * Información de seguridad
 
-<figure><img src="../../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
 
 

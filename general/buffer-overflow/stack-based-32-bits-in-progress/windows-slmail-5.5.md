@@ -8,7 +8,7 @@ SLMail está basado en los protocolos SMTP y POP3 siendo un software de servidor
 
 ### Versión de Windows
 
-<figure><img src="../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
 ### Instalación SLMail
 
@@ -16,7 +16,7 @@ Se lo puede obtener a partir de su página web.
 
 [https://slmail.software.informer.com/Descargar-gratis/](https://slmail.software.informer.com/Descargar-gratis/)
 
-<figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
 
 Una vez descargado el ejecutable se deja todo por defecto y se presiona siguiente en todos los campos.
 
@@ -26,15 +26,15 @@ Una vez descargado el ejecutable se deja todo por defecto y se presiona siguient
 
 Como se puede apreciar, la máquina tiene abierto únicamente un puerto que no nos interesa.
 
-<figure><img src="../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
 Por lo que habrá que configurar reglas de entrada y salida del firewall de Windows, deberán quedar así en ambas:
 
-<figure><img src="../../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
 
 Por lo que al realizar el escaneo nuevamente podemos ver expuestos los puertos 25 y 110:
 
-<figure><img src="../../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -46,7 +46,7 @@ Ya de antemano sabemos que el campo 'PASS' del servicio POP3 es vulnerable anali
 
 Al realizar una conexión al servicio POP3 de SLMail identificamos el campo PASS, que es el que sabemos que es vulnerable, por lo que ahora con nuestro script debemos replicar esta conexión y fuzzear el número de caracteres en el campo PASS.
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
 
 ### 2. Fuzzear
 
@@ -107,9 +107,9 @@ patter-create -l <lengh-bytes>
 
 Esta utilidad nos permite que al generar el overflow y fijarnos en que posición esta el EIP, nos dirá el número de bytes que desbordan la pila:
 
-<figure><img src="../../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 ### 3. Eliminar Badchars
 
@@ -174,11 +174,11 @@ Ahora con mona podremos comparar los bytes en memoria con los de nuestro fichero
 !mona compare -f bytearray.bin -a <ESP>
 ```
 
-<figure><img src="../../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
 Como podemos ver el archivo se corrompe a los 9 bytes con el caracter 0a, esto lo podemos comprobar con el gráfico en memoria que nos genera el debugeador que estemos utilizando:
 
-<figure><img src="../../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
 Acá se puede ver que no está tampoco el caracter \0x0a , por lo que podemos concluir en que es un badchar. Falta repetir este proceso las veces que sean necesarias hasta que no encontremos más badchars, en este caso los badchars son: '\x00\x0a\x0d', por lo que al generar nuestra shellcode debemos excluirlos.
 
@@ -190,11 +190,11 @@ El offset que calculamos anteriormente nos da el número para saber cuantos byte
 
 Lo primero será buscar el OP code de la operación JUMP ESP:
 
-<figure><img src="../../../.gitbook/assets/image (114).png" alt=""><figcaption><p>OP CODE '\xFF\E4'</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption><p>OP CODE '\xFF\E4'</p></figcaption></figure>
 
 Para acceder a la lista de módulos del proceso es con !mona modules, buscando encontramos un potencial módulo que nos interesa:
 
-<figure><img src="../../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 Ahora tenemos que buscar el OP Code JMP ESP en éste módulo, fijandonos que no tenga ningún badchar, esto lo podemos hacer con mona de la siguiente manera:
 
@@ -205,11 +205,11 @@ Ahora tenemos que buscar el OP Code JMP ESP en éste módulo, fijandonos que no 
 
 Y esto nos da un listado de posibles candidatos:
 
-<figure><img src="../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
 
 Yo en este caso seleccioné esta:
 
-![](<../../../.gitbook/assets/image (111).png>)
+![](<../../../.gitbook/assets/image (75).png>)
 
 Ahora tenemos que saber que esta en formato Little Endian, por lo que para utilizar esta dirección deberemos dar vuelta esta address.&#x20;
 
@@ -217,7 +217,7 @@ Ahora tenemos que saber que esta en formato Little Endian, por lo que para utili
 
 ### 1. Generar shellcode
 
-<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
 
 ### 2. Juntar todo y obtener una shell
 
@@ -286,4 +286,4 @@ if __name__ == '__main__':
 
 Al explotar este código nos otorga una shell en la máquina víctima:
 
-<figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>

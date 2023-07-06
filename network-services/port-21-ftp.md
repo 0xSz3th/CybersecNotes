@@ -41,4 +41,4 @@ dnsiff -i <NETWORK_INTERFACE>
 
 **Wireshark**
 
-<figure><img src="../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>

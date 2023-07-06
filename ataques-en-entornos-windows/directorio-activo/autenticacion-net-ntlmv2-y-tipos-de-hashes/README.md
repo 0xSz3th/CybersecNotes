@@ -50,7 +50,7 @@ Pero en ambos casos la autenticacion se da con un desafio **challenge/response:*
 4. Del mismo modo, el _host_, que también conoce la contraseña, crea el valor _hash_ y, a continuación, lo **compara con la respuesta del cliente**.
 5. Si **ambos valores coinciden**, se confirma la autenticidad del cliente y se permite el acceso. Si no hay coincidencia, se bloquea al cliente.
 
-<figure><img src="../../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
 
 
 
@@ -64,7 +64,7 @@ Pero en ambos casos la autenticacion se da con un desafio **challenge/response:*
 4. Y procederá a encriptar el desafío que le ha enviado al cliente que se quiere autenticar en el paso 1.
 5. El servidor compara los desafíos encriptados, y si son iguales el cliente estará autenticado en el servidor.
 
-<figure><img src="../../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
 ### **Cuenta a nivel de dominio**
 
@@ -74,7 +74,7 @@ Pero en ambos casos la autenticacion se da con un desafio **challenge/response:*
 4. Se hace la comparación del desafío encriptado por el cliente y el que realizó el controlador de dominio.
 5. Si los desafíos encriptados se corresponden, el cliente estará autenticado.
 
-<figure><img src="../../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 
 

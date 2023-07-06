@@ -2,7 +2,7 @@
 
 Lo primero para utilizar chisel es modificar el archivo /etc/proxychains.conf,  configurando un servidor socks5 en la localhost por el puerto 1080, para redirigir todo el tráfico TCP que vaya a ser enviado a este túnel.
 
-![](<../../.gitbook/assets/image (94).png>)
+![](<../../.gitbook/assets/image (62).png>)
 
 Esto nos va a permitir que cuando el cliente se conecte al servidor, todo el tráfico que mandemos al 127.0.0.1:1080 se esté enviando al cliente (chisel) conectado a nuestro servidor (chisel).
 
@@ -26,7 +26,7 @@ Esto nos va a permitir que cuando el cliente se conecte al servidor, todo el tr�
 
 **R:**
 
-<figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
 
 
 

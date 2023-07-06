@@ -26,11 +26,11 @@ Una de las mayores diferencias entre Kerberos y el protocolo NTLM es la verifica
 
 ### Cómo funciona
 
-<figure><img src="../../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 **1.** El cliente realiza una solicitud de un ticket-granting ticket (**TGT**), enviando un paquete **KRB\_AS\_REQ** para realizar este paso. La petición del TGT contiene información encriptada del cliente y su session key. Para hacer esta request el cliente le enviará su nombre de usuario y el tiempo de la requst con la versión encriptada de su contraseña. Ahora el **AS** buscará en su base de datos la contraseña del usuario (si es que existe) y tratará de desencriptar la marca de tiempo y si puede generará una session key para este usuario con un tiempo límite.
 
-<figure><img src="../../../.gitbook/assets/image (75).png" alt=""><figcaption><p><strong>KRB_AS_REQ</strong> </p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (92).png" alt=""><figcaption><p><strong>KRB_AS_REQ</strong> </p></figcaption></figure>
 
 **2**. Una vez se verifica el usuario, el AS emite un ticket-granting ticket (TGT) enviando un paquete **KRB\_AS\_REP**. Este TGT contiene la siguiente información:
 
@@ -41,7 +41,7 @@ Una de las mayores diferencias entre Kerberos y el protocolo NTLM es la verifica
   * Session key generada
   * El **PAC** (Privilege Attribute Certificate), que contiene información del usuario como su SID y todos los grupos a los que pertenece
 
-<figure><img src="../../../.gitbook/assets/image (93).png" alt=""><figcaption><p><strong>KRB_AS_REP</strong></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (30).png" alt=""><figcaption><p><strong>KRB_AS_REP</strong></p></figcaption></figure>
 
 El TGT estará encriptado con la key del KDC, por lo que unicamente este será capaz de desencriptar y leer este ticket. Por lo que cuando se le envíe al cliente este solo con su hash será capaz de ver su session key.
 
@@ -51,11 +51,11 @@ El TGT estará encriptado con la key del KDC, por lo que unicamente este será c
 * El servicio que quiera utilizar y el host al que está vinculado
 * Y un **autenticador,** que tendrá el usuario del cliente junto con la marca de tiempo, encriptados con la session key.
 
-<figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption><p><strong>KRB_AS_REP</strong></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption><p><strong>KRB_AS_REP</strong></p></figcaption></figure>
 
 El autenticador es enviado con la finalidad de al ser desencriptado el TGT por el KDC (ya que unicamente él puede desencriptarlo) y comparar el contenido del autenticador con el del TGT. Al recibir el TGT lo desencripta y procede a desencriptar el autenticador enviado por el cliente con la misma session key, si se lo puede desencriptar se valida que el cliente es quien dice ser.
 
-<figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
 
 **4.** Ahora el el TGS determinó que el cliente es válido, le enviará un mensaje **KRB\_TGS\_REP**, con la siguiente información:
 
@@ -64,11 +64,11 @@ El autenticador es enviado con la finalidad de al ser desencriptado el TGT por e
 
 Todo este paquete se lo vuelve a encriptar con la primera session key creada entre el KDC y el cliente. Para que cuando el cliente reciba el paquete **KRB\_TGS\_REP** lo desencripte y tenga su ticket **TGS.**
 
-<figure><img src="../../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
 
 **5.** Este paso se llama **KRB\_AP\_REQ** (Application Requst), en el que el cliente se dirige al servicio que se quiere autenticar con un nuevo **autenticador,** que tiene su usuario y la marca de tiempo con la nueva session key del paso anterior. Al enviarle este **TGS** al server, este lo desencripta con su contraseña hasheada (puesto que él y el DC son los únicos que conocen la contraseña) y con la session key tratará de desencriptar el autenticador enviado por el cliente, si se puede el cliente estará verificado.&#x20;
 
-<figure><img src="../../../.gitbook/assets/image (107).png" alt=""><figcaption><p><strong>KRB_AP_REQ</strong></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (37).png" alt=""><figcaption><p><strong>KRB_AP_REQ</strong></p></figcaption></figure>
 
 **6.** Si las claves secretas coinciden, el servidor de host permite al cliente acceder al servicio. El ticket de servicio determina el tiempo que el usuario puede utilizar el servicio. Una vez caduca el acceso, se puede renovar con el comando Kinit repitiendo de nuevo todo el protocolo de autenticación de Kerberos.
 

