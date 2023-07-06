@@ -37,10 +37,11 @@
 
 ## Pentesting Web
 
+* [XML External Entity Injection(XXE)](pentesting-web/xml-external-entity-injection-xxe.md)
+* [Open Redirect](pentesting-web/open-redirect.md)
 * [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
 * [LFI](pentesting-web/lfi/README.md)
   * [Log Poisoning (Apache, SSH y SMPT)](pentesting-web/lfi/log-poisoning-apache-ssh-y-smpt.md)
-* [Open Redirect](pentesting-web/open-redirect.md)
 
 ## Ataques en Entornos Windows
 
