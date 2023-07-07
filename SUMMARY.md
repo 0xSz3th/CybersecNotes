@@ -37,7 +37,10 @@
 
 ## Pentesting Web
 
-* [XML External Entity Injection(XXE)](pentesting-web/xml-external-entity-injection-xxe.md)
+* [XML External Entity Injection(XXE)](pentesting-web/xml-external-entity-injection-xxe/README.md)
+  * [Portswigger Lab #1: Retrieve Files](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-1-retrieve-files.md)
+  * [Portswigger Lab #2: Perform SSRF](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-2-perform-ssrf.md)
+  * [Portswigger Lab #6: Blind XXE to retrieve data via error messages](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-6-blind-xxe-to-retrieve-data-via-error-messages.md)
 * [Open Redirect](pentesting-web/open-redirect.md)
 * [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
 * [LFI](pentesting-web/lfi/README.md)

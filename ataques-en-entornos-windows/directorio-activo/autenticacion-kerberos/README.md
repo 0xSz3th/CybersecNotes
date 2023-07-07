@@ -64,7 +64,7 @@ El autenticador es enviado con la finalidad de al ser desencriptado el TGT por e
 
 Todo este paquete se lo vuelve a encriptar con la primera session key creada entre el KDC y el cliente. Para que cuando el cliente reciba el paquete **KRB\_TGS\_REP** lo desencripte y tenga su ticket **TGS.**
 
-<figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 **5.** Este paso se llama **KRB\_AP\_REQ** (Application Requst), en el que el cliente se dirige al servicio que se quiere autenticar con un nuevo **autenticador,** que tiene su usuario y la marca de tiempo con la nueva session key del paso anterior. Al enviarle este **TGS** al server, este lo desencripta con su contraseña hasheada (puesto que él y el DC son los únicos que conocen la contraseña) y con la session key tratará de desencriptar el autenticador enviado por el cliente, si se puede el cliente estará verificado.&#x20;
 
