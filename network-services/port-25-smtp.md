@@ -12,6 +12,14 @@ SMTP works in a step-by-step process, where the sending server first establishes
 
 
 
+## Email enumeartion via external services
+
+* [https://phonebook.cz/](https://phonebook.cz/)
+* Clearbit Chrome Extension
+* [https://hunter.io/](https://hunter.io/)
+
+
+
 ## User enumeration
 
 ### Automated tools
