@@ -1,5 +1,15 @@
 # Port 80/443 - HTTP/HTTPS
 
+## Basic Info
+
+
+
+```bash
+nc -v domain.com 80 
+openssl s_client -connect <url>:443
+sslscan <url>
+```
+
 ## Web Scanners
 
 <pre class="language-bash"><code class="lang-bash"><strong>## WhatWeb

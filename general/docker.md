@@ -116,13 +116,20 @@ docker rm &#x3C;id>           # Eliminar contenedor que no esté corriendo
 docker rm &#x3C;id> --force   # Eliminar un contenedor, no importa si está corriendo
 docker rm $(docker ps -a -q) --force  # Eliminar todos los contenedores
 
+
+## Monturas
+docker run -dit -p 80:80 -v &#x3C;host-folder-path>:&#x3C;destination-path-incontainer> --name webContainer web-server 
+docker run -dit -p 80:80 -v /home/kali/Desktop/Docker:/var/www/html --name webContainer web-server 
+
+## Logs
+docker logs &#x3C;id>
 </code></pre>
 
 
 
 ## Port Forwarding
 
-Partiendo de un Dockerfile para un servidor web:
+Partiendo de un Dockerfile para un servidor web corriendo en el puerto 80:
 
 ```bash
 ───────┬────────────────────────────────────────────────────────────
@@ -146,4 +153,23 @@ Partiendo de un Dockerfile para un servidor web:
   16   │ ENTRYPOINT service apache2 start
 ───────┴────────────────────────────────────────────────────────────
 ```
+
+Desde la máquina host se puede ejecutar el siguiente comando para "convertir" el puerto 80 del contenedor al puerto 80 del host:
+
+```bash
+docker run -p 53:53/udp mi_imagen
+docker run -dit -p <host-port>:<container-port> --name mi_imagen
+
+
+$ docker run -dit -p 80:80 --name webContainer web-server 
+1afd29e697e2b588a466b771b57bcc066bc2b2430a181cc797ae11bd009ea0d8
+                                                                                                                                                                                                                                            
+$ lsof -i:80
+COMMAND      PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+docker-pr 289798 root    4u  IPv4 606969      0t0  TCP *:http (LISTEN)
+docker-pr 289807 root    4u  IPv6 606972      0t0  TCP *:http (LISTEN)
+
+```
+
+
 

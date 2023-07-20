@@ -23,6 +23,7 @@
 ## Network Services
 
 * [Port 21 - FTP](network-services/port-21-ftp.md)
+* [Port 22 - SSH](network-services/port-22-ssh.md)
 * [Port 23 - Telnet](network-services/port-23-telnet.md)
 * [Port 25 - SMTP](network-services/port-25-smtp.md)
 * [Port 53 - DNS](network-services/port-53-dns/README.md)

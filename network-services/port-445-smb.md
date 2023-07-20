@@ -71,11 +71,20 @@ smb: \> recurse on
 smb: \> mget * 
 ```
 
+### Mount
+
+```bash
+apt install cifs-utils
+
+mount -t cifs //<ip>/<shared> /mnt/<somefolder> [-o username=<algo>,password=<algo>,domain=,rw]
+umount /mnt/<somefolder>
+```
+
 ## Explotación
 
 ### Rid Cycling
 
-Este ataque consta de enumerar usuarios con sus RID's y SID's a través de una null session con rpcclient..
+Este ataque consta de enumerar usuarios con sus RID's y SID's a través de una null session con rpcclient.
 
 ```bash
 rpcclient -U "" -N 10.10.10.129 -c "lsaenumsid" # sin creds
