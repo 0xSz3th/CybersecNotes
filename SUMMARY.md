@@ -47,6 +47,7 @@
 * [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
 * [LFI](pentesting-web/lfi/README.md)
   * [Log Poisoning (Apache, SSH y SMPT)](pentesting-web/lfi/log-poisoning-apache-ssh-y-smpt.md)
+* [Server Side Template Injection (SSTI)](pentesting-web/server-side-template-injection-ssti.md)
 
 ## Ataques en Entornos Windows
 
