@@ -10,7 +10,7 @@ Este ataque consiste en capturar los hashes Net-NTLM de un cliente, reenviarlos 
 
 Para poder hacer el relaying el cliente del que capturemos los hashes Net-NTLM deberá pertenecer al grupo local de administradores sobre el cual vamos a querer ejecutar comandos y que el SMB signing esté desactivado.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **/usr/share/responder/Responder.Conf:**
 
