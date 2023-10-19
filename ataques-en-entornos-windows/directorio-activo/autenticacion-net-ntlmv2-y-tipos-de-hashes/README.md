@@ -35,7 +35,7 @@ hashcat -m 1000 -a 3 hash.txt
 
 
 
-## Autenticación Net-NTLMv2 (NTLMv2)
+## Protocolo de Autenticación Net-NTLMv2 (NTLMv2)
 
 Es un protocolo de autenticación utilizado en entornos Windows, permitiendo a un cliente demostrar su identidad ante un servidor. Esta autenticación puede ser de dos tipos:
 
