@@ -4,22 +4,6 @@
 
 * [CyberSec Notes](README.md)
 
-## General
-
-* [Pivoting](general/pivoting/README.md)
-  * [Chisel](general/pivoting/chisel.md)
-  * [Port Forwarding](general/pivoting/port-forwarding.md)
-  * [Nmap con pivoting](general/pivoting/nmap-con-pivoting.md)
-* [Buffer Overflow](general/buffer-overflow/README.md)
-  * [Stack Based 32 bits \[in progress\]](general/buffer-overflow/stack-based-32-bits-in-progress/README.md)
-    * [Windows SLMail 5.5](general/buffer-overflow/stack-based-32-bits-in-progress/windows-slmail-5.5.md)
-    * [Linux, Vulnerable functions in C programs](general/buffer-overflow/stack-based-32-bits-in-progress/linux-vulnerable-functions-in-c-programs.md)
-* [Google Dorks \[in progress\]](general/google-dorks-in-progress.md)
-* [Sliver C2 \[in progress\]](general/sliver-c2-in-progress.md)
-* [Denial of Service (DoS)](general/denial-of-service-dos/README.md)
-  * [Low and Slow](general/denial-of-service-dos/low-and-slow.md)
-* [Docker](general/docker.md)
-
 ## Network Services
 
 * [Port 21 - FTP](network-services/port-21-ftp.md)
@@ -37,18 +21,9 @@
 * [Port 3128 - Squid](network-services/port-3128-squid.md)
 * [Port 5985 - WinRM](network-services/port-5985-winrm.md)
 
-## Pentesting Web
+## Command && Control
 
-* [XML External Entity Injection(XXE)](pentesting-web/xml-external-entity-injection-xxe/README.md)
-  * [Portswigger Lab #1: Retrieve Files](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-1-retrieve-files.md)
-  * [Portswigger Lab #2: Perform SSRF](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-2-perform-ssrf.md)
-  * [Portswigger Lab #6: Blind XXE to retrieve data via error messages](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-6-blind-xxe-to-retrieve-data-via-error-messages.md)
-* [Open Redirect](pentesting-web/open-redirect.md)
-* [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
-* [LFI](pentesting-web/lfi/README.md)
-  * [Log Poisoning (Apache, SSH y SMPT)](pentesting-web/lfi/log-poisoning-apache-ssh-y-smpt.md)
-* [Server Side Template Injection (SSTI)](pentesting-web/server-side-template-injection-ssti.md)
-* [Padding Oracle](pentesting-web/padding-oracle.md)
+* [Sliver C2 \[in progress\]](command-and-and-control/sliver-c2-in-progress.md)
 
 ## Ataques en Entornos Windows
 
@@ -81,12 +56,43 @@
     * [PS Credentials in XML format](ataques-en-entornos-windows/directorio-activo/privilege-escalation/ps-credentials-in-xml-format.md)
   * [Utils](ataques-en-entornos-windows/directorio-activo/utils.md)
 * [Amsi Bypass](ataques-en-entornos-windows/amsi-bypass.md)
+* [Buffer Overflow](ataques-en-entornos-windows/buffer-overflow/README.md)
+  * [Stack Based 32 bits \[in progress\]](ataques-en-entornos-windows/buffer-overflow/stack-based-32-bits-in-progress/README.md)
+    * [Windows SLMail 5.5](ataques-en-entornos-windows/buffer-overflow/stack-based-32-bits-in-progress/windows-slmail-5.5.md)
 
 ## Ataques en Entornos Linux
 
 * [Privilege escalation \[in progress\]](ataques-en-entornos-linux/privilege-escalation-in-progress.md)
 * [MalDev](ataques-en-entornos-linux/maldev/README.md)
   * [Simple Reverse Shell](ataques-en-entornos-linux/maldev/simple-reverse-shell.md)
+* [Buffer Over Flow](ataques-en-entornos-linux/buffer-over-flow/README.md)
+  * [Stack Based 32 bits](ataques-en-entornos-linux/buffer-over-flow/stack-based-32-bits/README.md)
+    * [Linux, Vulnerable functions in C programs](ataques-en-entornos-linux/buffer-over-flow/stack-based-32-bits/linux-vulnerable-functions-in-c-programs.md)
+
+## General
+
+* [Reverse Shells Cheet Sheet](general/reverse-shells-cheet-sheet.md)
+* [Pivoting](general/pivoting/README.md)
+  * [Chisel](general/pivoting/chisel.md)
+  * [Port Forwarding](general/pivoting/port-forwarding.md)
+  * [Nmap con pivoting](general/pivoting/nmap-con-pivoting.md)
+* [Google Dorks \[in progress\]](general/google-dorks-in-progress.md)
+* [Denial of Service (DoS)](general/denial-of-service-dos/README.md)
+  * [Low and Slow](general/denial-of-service-dos/low-and-slow.md)
+* [Docker](general/docker.md)
+
+## Pentesting Web
+
+* [XML External Entity Injection(XXE)](pentesting-web/xml-external-entity-injection-xxe/README.md)
+  * [Portswigger Lab #1: Retrieve Files](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-1-retrieve-files.md)
+  * [Portswigger Lab #2: Perform SSRF](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-2-perform-ssrf.md)
+  * [Portswigger Lab #6: Blind XXE to retrieve data via error messages](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-6-blind-xxe-to-retrieve-data-via-error-messages.md)
+* [Open Redirect](pentesting-web/open-redirect.md)
+* [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
+* [LFI](pentesting-web/lfi/README.md)
+  * [Log Poisoning (Apache, SSH y SMPT)](pentesting-web/lfi/log-poisoning-apache-ssh-y-smpt.md)
+* [Server Side Template Injection (SSTI)](pentesting-web/server-side-template-injection-ssti.md)
+* [Padding Oracle](pentesting-web/padding-oracle.md)
 
 ## Wireless Pentesting
 
