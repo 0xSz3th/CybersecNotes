@@ -18,6 +18,7 @@
 * [Port 88 - Kerberos](network-services/port-88-kerberos.md)
 * [Port 386, 636, 3268, 3269 - LDAP](network-services/port-386-636-3268-3269-ldap.md)
 * [Port 445 - SMB](network-services/port-445-smb.md)
+* [Port 1521,1522-1529 - Oracle TNS Listener](network-services/port-1521-1522-1529-oracle-tns-listener.md)
 * [Port 3128 - Squid](network-services/port-3128-squid.md)
 * [Port 5985 - WinRM](network-services/port-5985-winrm.md)
 
