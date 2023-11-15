@@ -16,3 +16,17 @@ impacket-smbserver smbFolder $(pwd) -smb2support
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls" # Poner eso en la powershell
 
 </code></pre>
+
+## Impacket
+
+{% embed url="https://thehackerway.com/2021/05/17/network-hacking-con-impacket-parte-2/" %}
+
+```bash
+# Remote access With admin credentials
+psexec.py <domain-name>/<User>:<Password>@<ip> cmd
+smbexec.py <domain-name>/<User>:<Password>@<ip>
+wmiexec.py <domain-name>/<User>:<Password>@<ip>
+
+dcomexec.py -object MMC20 <domain-name>/<User>:<Password>@<ip>
+# MMC20, 
+```

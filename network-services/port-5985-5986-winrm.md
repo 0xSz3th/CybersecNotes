@@ -1,4 +1,4 @@
-# Port 5985 - WinRM
+# Port 5985, 5986 - WinRM
 
 WinRM (Windows Remote Management) es un protocolo de administración remota desarrollado por Microsoft para la administración de sistemas operativos Windows. WinRM permite a los administradores controlar y administrar de forma remota servidores y estaciones de trabajo Windows. A través de WinRM, los administradores pueden ejecutar comandos y scripts, obtener información del sistema, configurar el firewall, entre otras funciones de administración remota.
 
@@ -22,8 +22,9 @@ WINRM       10.10.10.192    5985   DC01             [+] BLACKFIELD.local\svc_bac
 
 Conectarse a este servicio con evilwinrm
 
-```
+```bash
 gem install evilwinrm # Instalar evilwinrm 
 
-evilwinrm -i <HOST> -u <USER> -H <NT-HASH>
+evil-winrm -i <HOST> -u <USER> -H <NT-HASH> # connection
+evil-winrm -i <HOST> -c <CERT> -k <KEY> -S  # ssl connection
 ```

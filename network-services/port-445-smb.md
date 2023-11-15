@@ -29,7 +29,7 @@ rpcclient //machine.htb -U domain.local/<USER>%<HASH> --pw-nt-hash
 rpcclient -U "<USER>%<PASS>" <TARGET-IP> #With creds
 
 # Domain Info
-querydomuinfo         # Description of the domain
+querydominfo         # Description of the domain
 enumdomains           # List domains in the network
 getdompwinfo          # Password policy info
 
@@ -65,6 +65,7 @@ netsharegetinfo <SHARE-NAME>
 ## Download Shared Folders
 smbmap smbmap -H <TARGET-IP> -u 'username' -p 'password' --download '<Path>' # one file
 
+smbclient //<target-ip>/<shared-foldaer> -N             # Null session
 smbclient //<target-ip>/<shared-foldaer> -U "<username>%password>"
 smb: \> prompt off         
 smb: \> recurse on         
@@ -73,12 +74,11 @@ smb: \> mget *
 
 ### Mount
 
-```bash
-apt install cifs-utils
+<pre class="language-bash"><code class="lang-bash">apt install cifs-utils
 
-mount -t cifs //<ip>/<shared> /mnt/<somefolder> [-o username=<algo>,password=<algo>,domain=,rw]
-umount /mnt/<somefolder>
-```
+<strong>mount -t cifs //&#x3C;ip>/&#x3C;shared> /mnt/&#x3C;somefolder> [-o username=&#x3C;algo>,password=&#x3C;algo>,domain=,rw]
+</strong>umount /mnt/&#x3C;somefolder>
+</code></pre>
 
 ## Explotación
 

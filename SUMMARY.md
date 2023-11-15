@@ -20,7 +20,7 @@
 * [Port 445 - SMB](network-services/port-445-smb.md)
 * [Port 1521,1522-1529 - Oracle TNS Listener](network-services/port-1521-1522-1529-oracle-tns-listener.md)
 * [Port 3128 - Squid](network-services/port-3128-squid.md)
-* [Port 5985 - WinRM](network-services/port-5985-winrm.md)
+* [Port 5985, 5986 - WinRM](network-services/port-5985-5986-winrm.md)
 
 ## Command && Control
 
