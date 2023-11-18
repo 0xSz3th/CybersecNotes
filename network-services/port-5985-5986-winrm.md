@@ -11,13 +11,11 @@ Los usuarios pertenecientes al grupo Remote Managment Users cuentan con capacida
 Validar si un determinado usuario tiene capacidad de WinRM:
 
 ```bash
+### Normal connection
 crackmapexec winrm <TARGET-IP> -u '<USER>' -p '<PASSWD>' [-H '<NT-HASH>']
 
-crackmapexec winrm 10.10.10.192 -u 'svc_backup' --hash '9658d1d1dcd9250115e2205d9f48400d'
-SMB         10.10.10.192    5985   DC01             [*] Windows 10.0 Build 17763 (name:DC01) (domain:BLACKFIELD.local)
-HTTP        10.10.10.192    5985   DC01             [*] http://10.10.10.192:5985/wsman
-WINRM       10.10.10.192    5985   DC01             [+] BLACKFIELD.local\svc_backup:9658d1d1dcd9250115e2205d9f48400d (Pwn3d!)
-
+### With ssl
+crackmapexec winrm <TARGET-IP>  --ssl -u '<USER>' -p '<PASSWD>' [-H '<NT-HASH>'] --ignore-ssl-cert
 ```
 
 Conectarse a este servicio con evilwinrm

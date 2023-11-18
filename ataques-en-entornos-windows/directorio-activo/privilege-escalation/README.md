@@ -14,19 +14,23 @@
 ```powershell
 # Get current Windows Version
 reg query "hklm\software\microsoft\windows nt\currentversion" /v ProductName
-[Environment
-::Is64BitProcess # 32 or 64 bits
+[Environment]::Is64BitProcess # 32 or 64 bits
 
-# What can i do
+### What can i do
 whoami /priv
 whoami /all
 
-# List user by perms
-net localgroup <PERM>
-net localgroup "Remote Managment Users"
+### Users info
+net user         # list all users
+net user <USER>  # describe user
+
+### List groups
+net localgroup        # list all groups
+net localgroup <PERM> # list all members of a group
+
+### Powershell history
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
-
-
 
 ## Privilegios
 

