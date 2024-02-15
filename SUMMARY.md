@@ -72,6 +72,7 @@
 
 ## General
 
+* [Host Discovery](general/host-discovery.md)
 * [Reverse Shells Cheet Sheet](general/reverse-shells-cheet-sheet.md)
 * [Pivoting](general/pivoting/README.md)
   * [Chisel](general/pivoting/chisel.md)
