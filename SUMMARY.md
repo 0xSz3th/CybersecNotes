@@ -69,6 +69,7 @@
 * [Buffer Over Flow](ataques-en-entornos-linux/buffer-over-flow/README.md)
   * [Stack Based 32 bits](ataques-en-entornos-linux/buffer-over-flow/stack-based-32-bits/README.md)
     * [Linux, Vulnerable functions in C programs](ataques-en-entornos-linux/buffer-over-flow/stack-based-32-bits/linux-vulnerable-functions-in-c-programs.md)
+* [Persistencia](ataques-en-entornos-linux/persistencia.md)
 
 ## General
 
