@@ -1,5 +1,7 @@
 # Chisel
 
+{% embed url="https://exploit-notes.hdks.org/exploit/network/port-forwarding/port-forwarding-with-chisel/" %}
+
 Lo primero para utilizar chisel es modificar el archivo /etc/proxychains.conf,  configurando un servidor socks5 en la localhost por el puerto 1080, para redirigir todo el tráfico TCP que vaya a ser enviado a este túnel.
 
 ![](<../../.gitbook/assets/image (62).png>)
