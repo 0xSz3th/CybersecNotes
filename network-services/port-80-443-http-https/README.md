@@ -4,11 +4,17 @@
 
 
 
-```bash
-nc -v domain.com 80 
-openssl s_client -connect <url>:443
-sslscan <url>
-```
+<pre class="language-bash"><code class="lang-bash">nc -v domain.com 80 
+openssl s_client -connect &#x3C;url>:443
+sslscan &#x3C;url>
+
+### URL scrapping
+<strong>#For JSON file:
+</strong>http://web.archive.org/cdx/search/cdx?url=example.com*&#x26;output=json
+
+#For TXT format:
+http://web.archive.org/cdx/search/cdx?url=example.com*&#x26;output=txt
+</code></pre>
 
 ## Web Scanners
 
