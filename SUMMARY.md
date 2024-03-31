@@ -91,11 +91,8 @@
   * [Portswigger Lab #2: Perform SSRF](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-2-perform-ssrf.md)
   * [Portswigger Lab #6: Blind XXE to retrieve data via error messages](pentesting-web/xml-external-entity-injection-xxe/portswigger-lab-6-blind-xxe-to-retrieve-data-via-error-messages.md)
 * [Open Redirect](pentesting-web/open-redirect.md)
-* [SQL Inyection \[in progress\]](pentesting-web/sql-inyection-in-progress.md)
 * [LFI](pentesting-web/lfi/README.md)
   * [Log Poisoning (Apache, SSH y SMPT)](pentesting-web/lfi/log-poisoning-apache-ssh-y-smpt.md)
-* [Server Side Template Injection (SSTI)](pentesting-web/server-side-template-injection-ssti.md)
-* [Padding Oracle](pentesting-web/padding-oracle.md)
 
 ## Wireless Pentesting
 
