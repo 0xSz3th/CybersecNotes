@@ -24,3 +24,7 @@ Bienvenidos a mi blog, este gitbook tiene la intención de ser una recopilación
 
 {% embed url="https://swisskyrepo.github.io/PayloadsAllTheThingsWeb/" %}
 
+{% embed url="https://swisskyrepo.github.io/InternalAllTheThings/" %}
+
+
+
