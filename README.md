@@ -8,6 +8,10 @@ Bienvenidos a mi blog, este gitbook tiene la intención de ser una recopilación
 
 
 
+### Otro proyecto mío
+
+{% embed url="https://pinvokeisalive.gitbook.io/pinvoke" %}
+
 
 
 ## Recursos útiles&#x20;
