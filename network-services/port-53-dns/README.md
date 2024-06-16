@@ -26,15 +26,15 @@ dig SOA @DNS-IP &#x3C;DOMAIN-NAME>     # Start of Authority: indicates the Autho
 ## Active Directory servers <a href="#active-directory-servers" id="active-directory-servers"></a>
 
 ```bash
-dig -t _gc._tcp.lab.domain.com
-dig -t _ldap._tcp.lab.domain.com
-dig -t _kerberos._tcp.lab.domain.com
-dig -t _kpasswd._tcp.lab.domain.com
+dig -t _gc._tcp.lab.domain.com <IP>
+dig -t _ldap._tcp.lab.domain.com <IP>
+dig -t _kerberos._tcp.lab.domain.com <IP>
+dig -t _kpasswd._tcp.lab.domain.com <IP>
 
-nslookup -type=srv _kerberos._tcp.<CLIENT_DOMAIN>
-nslookup -type=srv _kerberos._tcp.domain.com
+nslookup -type=srv _kerberos._tcp.<CLIENT_DOMAIN> <IP>
+nslookup -type=srv _kerberos._tcp.domain.com <IP>
 
-nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='domain.com'"
+nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='domain.com'" <IP>
 ```
 
 ## Subdomains Enumeration
