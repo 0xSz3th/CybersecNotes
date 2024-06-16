@@ -23,6 +23,20 @@ dig MX @DNS-IP &#x3C;DOMAIN-NAME>     # Mail exchanger: record specifies an SMTP
 dig SOA @DNS-IP &#x3C;DOMAIN-NAME>     # Start of Authority: indicates the Authoritative Name Server for the current DNS zone, contact details for the domain administrator, domain serial number, and information on how frequently DNS information for this zone should be refreshed.
 </code></pre>
 
+## Active Directory servers <a href="#active-directory-servers" id="active-directory-servers"></a>
+
+```bash
+dig -t _gc._tcp.lab.domain.com
+dig -t _ldap._tcp.lab.domain.com
+dig -t _kerberos._tcp.lab.domain.com
+dig -t _kpasswd._tcp.lab.domain.com
+
+nslookup -type=srv _kerberos._tcp.<CLIENT_DOMAIN>
+nslookup -type=srv _kerberos._tcp.domain.com
+
+nmap --script dns-srv-enum --script-args "dns-srv-enum.domain='domain.com'"
+```
+
 ## Subdomains Enumeration
 
 ### **Active**
